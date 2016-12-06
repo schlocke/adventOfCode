@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>test</title>
+	</head>
+	<body>
+		Password1<span id="load1">(loading...)</span> = <span id="password1"></span>
+		<br>
+		Password2<span id="load2">(loading...)</span> = <span id="password2"></span>
+	
+		<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function(){
+
+				function getp1(i, j) {
+					$.ajax({
+						method: "POST",
+						url: "day5.php",
+						dataType: "json",
+						data: { i:i , part:1}
+						})
+						.done(function( data ) {
+							$("#password1").append(data.p);
+							j++;
+							if(j < 8) getp1(data.i, j);
+							else $("#load1").text("DONE");
+							return;
+						}
+					);
+				}
+
+				function getp2(i, j, arr) {
+					$.ajax({
+						method: "POST",
+						url: "day5.php",
+						dataType: "json",
+						data: { i: i, part:2 }
+						})
+						.done(function( data ) {
+							
+							if(arr[data.index] === '') {
+								arr[data.index] = data.p;
+								$("#password2").text(arr.join("_"));
+								j++;
+							}
+							if(j < 8) {
+								getp2(data.i, j, arr);
+							} else {
+								$("#password2").text(arr.join(""));
+								$("#load2").text("DONE");
+							}
+							return;
+						}
+					);
+				}
+
+				getp1(0, 0);
+				getp2(0, 0, ['','','','','','','','']);
+			});			
+		</script>
+	</body>
+</html>
