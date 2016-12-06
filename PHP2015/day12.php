@@ -30,7 +30,7 @@ class daytwelve {
 	public function getTwo() { return $this->two; }
 }
 
-$input = file('day12input.txt');
+$input = file('day12.txt');
 $input = json_decode($input[0]);
 
 $run = new daytwelve();

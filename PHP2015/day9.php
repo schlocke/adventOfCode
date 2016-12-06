@@ -4,7 +4,7 @@ $one = 0;
 $two = 0;
 $journeys = array();
 
-foreach (file('day9input.txt', FILE_IGNORE_NEW_LINES) as $line) {
+foreach (file('day9.txt', FILE_IGNORE_NEW_LINES) as $line) {
     $journey = explode(" ", $line);
 
     $journeys[$journey[0]][$journey[2]] = (int)$journey[4];
