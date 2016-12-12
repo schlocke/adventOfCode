@@ -5,7 +5,7 @@
 		private $giveHigh = array();
 		private $giveLow = array();
 		private $chips = array();
-		private $log = array();
+		public $log = array();
 
 		function __construct($lowtype, $low, $hightype, $high) {
 			$this->giveLow = array($lowtype, $low);
@@ -76,8 +76,12 @@
 		}
 	}
 
-	echo '<pre>';
-	print_r($bots);
+	foreach ($bots as $botno => $bot) {
+		if( in_array('holding 17 and 61', $bot->log) ) {
+			echo "Part1: ".$botno."<br>";
+			break;
+		}
+	}
+
 	ksort($output);
-	print_r($output);
-	echo '</pre>';
+	echo "Part 2: ".($output[0]*$output[1]*$output[2]);
