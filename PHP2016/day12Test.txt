@@ -1,0 +1,14 @@
+cpy 41 a
+inc a
+inc a
+dec a
+jnz a 2
+dec a
+inc a
+inc a
+dec a
+jnz a -1
+dec a
+dec a
+dec a
+dec a
